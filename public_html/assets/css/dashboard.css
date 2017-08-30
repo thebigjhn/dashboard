@@ -1,0 +1,129 @@
+body {
+          padding-top: 50px;
+          position: relative;
+      }
+      
+      pre {
+          tab-size: 5;
+      }
+      
+      @media only screen and (max-width: 1200px) {
+              .navbar-header {
+        float: none;
+    }
+    body {
+        padding-top: 70px;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+          .side-collapse-container{
+              width:100%;
+              position:relative;
+              left:0;
+              transition:left .4s;
+          }
+          .side-collapse-container.out{
+              left:100px;
+          }
+          .side-collapse {
+              top:65px;
+              bottom:0;
+              left:0;
+              width:200px;
+              position:fixed;
+              overflow:hidden;
+              transition:width .4s;
+          }
+          .side-collapse.in {
+              width:0;
+          }
+      }
+.tabsBottom {
+    font-size: small;
+}
+.tabsBottom ul {
+    bottom: -2;
+}
+.navbar-brand {
+    position:relative;
+    min-height: 43px;
+}
+.img-responsive {
+    width:160px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+    height: 43px;
+    position:relative;
+    top:50%;
+}
+.noRpad{
+    padding-right: 0px;
+}
+.noLborder{
+    border-left-width: 0px;
+}
+.noLpad{
+    padding-left: 0px;
+}
+.tabs-left{
+    padding-top: 0px;
+}
+.leftTabbed{
+  z-index: 10;  
+  position: relative;  
+  right: 0;   
+}
+#marketingTabcontent{
+    height: auto;
+}
+.modal-backdrop.in {
+    opacity: 1;
+}
+.g-signin2{
+    width: 100%;
+}
+
+.g-signin2 > div{
+    margin: 0 auto;
+}
+.tabs-left{
+    border-right: 1px solid #777;
+}
+#curUser{
+    padding-top: 1px;
+    padding-bottom: 2px;
+}
+#curUser div{
+    padding-bottom: 2px;
+}
+td.details-control {
+    background: url('../img/digiIcon.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../img/digiIconInvert.png') no-repeat center center;
+}
+#contactsPanel div.dataTables_wrapper{ 
+    min-height: 410px; 
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
