@@ -72,21 +72,13 @@
                             </div>
                             <div class="panel-body">
                                 <fieldset>
-                                    <table width="40%" cellspacing="2">
-                                        <tr>
-                                            <td>
-                                                <label for="punchEmail">Email:</label>
-                                                <select name="Email" id="punchEmail" class="form-control">
-                                                    <option></option>
-                                                </select>
-                                                <br/><br/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table id="punchList" width="100%" class="table table-striped table-bordered"></table>
+									<label for="punchEmail">Email:</label>
+                                    <select name="Email" id="punchEmail" class="form-control">
+                                        <option></option>
+                                    </select><br/><br/>
+                                    <table width="100%" cellspacing="2"></table>
+                                    <table id="editPunchList" width="100%" class="table table-striped table-bordered"></table>
                                 </fieldset>
-                                <br>
-                                <div style="float: right"><button type="button" class="btn btn-primary btn-sm success" id="addPunchSubmit">Submit</button></div>
                             </div>
                         </div>
                     </div>

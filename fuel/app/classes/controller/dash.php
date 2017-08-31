@@ -86,6 +86,7 @@ class Controller_dash extends Controller {
         $agentEmail = $splitID[0].'@digitellinc.com';
         $newStart = Input::get('newStart');
         $newEnd = Input::get('newEnd');
+		$punchEmail = Input::get('userEmail');
         switch ($type) {
             case 'dayHours':
 
@@ -204,7 +205,10 @@ class Controller_dash extends Controller {
 			case 'fetchUsers':
                 $userEmails = DB::query('SELECT userEmail FROM `tc_usersTBL`')->execute(); 
                 return json_encode($userEmails->as_array());
-                break;	
+                break;
+			case 'punchEdit' :
+			    $punchEdit = DB::select('*')->from('tc_punchTBL')->where('userEmail', $punchEmail)->execute();
+				return json_encode($punchEdit->as_array());
         }
     }
 

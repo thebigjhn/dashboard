@@ -135,8 +135,18 @@ $(function () {
         sideBySide: true
     });
     $(document).on('loadComplete', function () {
+		var userID = $("#userID").val();
+	    var theAdmin = userID.split(":"); 
+		getPunchRequest(theAdmin[0]+"@digitellinc.com");
         getData();
     });
+	$("select#punchEmail").change(function(){
+	var userEmail = $("#punchEmail").children(":selected").html();
+     $("#editPunchList").DataTable().destroy();
+            setTimeout(function () {
+            getPunchRequest(userEmail);                   
+            }, 1000);
+	});
     $("#punchButton").click(function () {
         doPunch();
     });
@@ -144,9 +154,6 @@ $(function () {
         getLinkList();
         getPunchedIn();
         getUsers();
-    }
-    function getPunches() {
-
     }
     function getUsers() {
         var postData = {
@@ -167,6 +174,114 @@ $(function () {
             });
         });
     }
+	
+	function getPunchRequest(userEmail) {
+		var timestamp = moment().format("YYYY-MM-DD@HH:mm:ss");
+	    var userID = $("#userID").val();
+	    var theAdmin = userID.split(":"); 
+        var postData = {
+            'type': 'punchEdit',
+			'userEmail' : userEmail
+        };
+        $.get('./update', postData).done(function (data) {
+            var punches = JSON.parse(data);
+            var punchEditor = new $.fn.dataTable.Editor({
+                ajax: "./punches",
+                table: "#editPunchList",
+                idSrc: 'id',
+                fields: [{
+                        label: "Punch ID",
+                        name: "punchID",
+						def: "admin:"+theAdmin[0]+":"+timestamp
+                    }, {
+                        label: "User",
+                        name: "userEmail",
+						def: userEmail
+                    }, {
+                        label: "Punch In",
+                        name: "punchIN",
+						type: "datetime",
+						format: "YYYY-MM-DD HH:mm:ss"
+                    }, {
+                        label: "Punch Out",
+                        name: "punchOUT",
+						type: "datetime",
+						format: "YYYY-MM-DD HH:mm:ss"
+                    }, {
+                        label: "Hours",
+                        name: "timeBlock",
+						def: "0"
+                    }
+                ]
+            });
+            var editPunchTable = $('#editPunchList').DataTable({
+                language: {
+                    searchPlaceholder: "Search"
+                },
+                dom: 'Bfrtip',
+                data: punches,
+                columns: [{
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+                        orderable: false
+                    }, {
+                        data: 'punchID',
+                        title: 'Punch ID'
+                    }, {
+                        data: 'userEmail',
+                        title: 'User'
+                    }, {
+                        data: 'punchIN',
+                        title: 'Punch IN'
+                    }, {
+                        data: 'punchOUT',
+                        title: 'Punch OUT'
+                    }, {
+                        data: 'timeBlock',
+                        title: 'Hours'
+                    }
+                ],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child'
+                },
+                buttons: [{
+                        extend: "create",
+                        text: 'Add Punch',
+                        className: 'btn-xs',
+                        editor: punchEditor
+                    }, {
+                        extend: "remove",
+                        className: 'btn-xs',
+                        editor: punchEditor
+                    }, {
+                        extend: "csv",
+						title: userEmail,
+                        className: 'btn-xs'
+                    }, {
+                        extend: "pdf",
+						title: userEmail,
+                        className: 'btn-xs'
+                    }
+                ],
+                fixedHeader: true,
+                pageLength: 400,
+                scrollY: '500px',
+                pagingType: 'full_numbers',
+                processing: true
+            });
+            $('#editPunchList').on('click', 'tbody td:not(:first-child)', function (e) {
+                punchEditor.inline(this, {
+                    onBlur: 'submit'
+                });
+            });
+			$("#DTE_Field_timeBlock").on("click", "input", function(){
+				console.log("Clicked TimeBlock");
+			});
+        });
+    }
+	
     function getLinkList() {
         var postData = {
             'type': 'linkList'

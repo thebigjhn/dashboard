@@ -923,17 +923,25 @@ $(function () {
 			                scrollY: '220px',
 			                scrollCollapse: true,
 			                order: [[1, 'desc']],
-                                        buttons : [{
-							text : 'Refresh',
-							action : function (e, dt, node, config) {
-								$("#supportTable").DataTable().destroy();
-								setTimeout(function () {
-									getPhoneLogs();
-								}, 1000);
-							},
-							className : 'btn-xs'
-						}
-					]
+                            buttons : [{
+									text : 'Refresh',
+									action : function (e, dt, node, config) {
+										$("#supportTable").DataTable().destroy();
+											setTimeout(function () {
+												getPhoneLogs();
+											}, 1000);
+										},
+									className: 'btn-xs'
+								}, {
+									extend: "csv",
+									title: "Phone Logs",
+									className: 'btn-xs'
+								}, {
+									extend: "pdf",
+									title: "Phone Logs",
+									className: 'btn-xs'
+								}
+							]
 			            });
 			            $('#callerEmail').keyup(function () {
 			                phoneTable.search($(this).val()).draw();
