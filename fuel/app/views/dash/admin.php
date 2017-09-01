@@ -72,12 +72,27 @@
                             </div>
                             <div class="panel-body">
                                 <fieldset>
+									<label for="punchMonth">Month:</label>
+                                    <select name="Month" id="punchMonth" class="form-control">
+                                        <option value="1">January</option>
+										<option value="2">Febuary</option>
+										<option value="3">March</option>
+										<option value="4">April</option>
+										<option value="5">May</option>
+										<option value="6">June</option>
+										<option value="7">July</option>
+										<option value="8">August</option>
+										<option value="9">September</option>
+										<option value="10">October</option>
+										<option value="11">November</option>
+										<option value="12">December</option>
+                                    </select>
 									<label for="punchEmail">Email:</label>
                                     <select name="Email" id="punchEmail" class="form-control">
                                         <option></option>
                                     </select><br/><br/>
-                                    <table width="100%" cellspacing="2"></table>
-                                    <table id="editPunchList" width="100%" class="table table-striped table-bordered"></table>
+                                    <table width="90%" cellspacing="2"></table>
+                                    <table id="editPunchList" width="90%" class="table table-striped table-bordered"></table>
                                 </fieldset>
                             </div>
                         </div>
